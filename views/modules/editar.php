@@ -1,8 +1,12 @@
 <h1>EDITAR USUARIO</h1>
 
-<form method="post" action="">
-	<input type="text" placeholder="Usuario" name="usuario" required>
-	<input type="password" placeholder="Contraseña" name="password" required>
-	<input type="email" placeholder="Email" name="email" required>
-	<input type="submit" value="Enviar">
+<form method="post" >
+	<input type="text" value="Usuario" name="usuario" required>
+	<input type="text" value="Contraseña" name="password" required>
+	<input type="email" value="Email" name="email" required>
+	<input type="submit" value="Actualizar">
 </form>
+<?php
+ $editarUsuario= new MvcController();
+ $editarUsuario-> editarUsuarioController();
+?>

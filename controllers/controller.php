@@ -55,16 +55,21 @@ class MvcController{
 	public function vistaUsuariosController(){
 		$respuesta = Datos:: vistaUsuariosModel("usuario");
 		foreach($respuesta as $row => $item){
-			echo "<tr>
-						<td>".$item['usuario']."</td>
-						<td>".$item['password']."</td>
-						<td>".$item['email']."</td>
-						<td><button>Editar</button></td>
+			echo '<tr>
+						<td>'.$item['usuario'].'</td>
+						<td>'.$item['password'].'</td>
+						<td>'.$item['email'].'</td>
+						<td><a href="index.php?action=editar&id='.$item['id'].'"><button>Editar</button></a></td>
 						<td><button>Borrar</button></td>
-					</tr>";
-
+					</tr>';
 		}
-		
+	}
+	#EDITAR USUARIO
+	#--------------------------------------------------------------	
+	public function editarUsuarioController(){
+		$datosController = $_GET["id"];
+		$respuesta = Datos:: editarUsuariosModel($datosController, "usuario");
+		var_dump($respuesta[1]);
 	}
 }
 
