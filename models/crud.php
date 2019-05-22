@@ -14,6 +14,7 @@ require_once "models/conexion.php";
             }else{
             return "error";
         }
+        $stmt->close();
         }
         #INGRESO USUARIO
         #-------------------
@@ -22,6 +23,7 @@ require_once "models/conexion.php";
             $stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->fetch();
+            $stmt->close();
         }
         #VISTA DE DATOS
         #----------------------------------
@@ -29,6 +31,7 @@ require_once "models/conexion.php";
             $stmt = Conexion::conectar()->prepare("SELECT  id, usuario, password, email FROM $tabla");
             $stmt->execute();
             return $stmt->fetchAll();
+            $stmt->close();
         }
     }
 ?>

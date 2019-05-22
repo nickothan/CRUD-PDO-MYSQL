@@ -41,6 +41,9 @@ class MvcController{
 														"password"=>$_POST["passwordIngreso"] );
 			$respuesta= Datos::ingresoUsuarioModel($datosController, "usuario");
 			if($respuesta["usuario"]== $_POST["usuarioIngreso"] && $respuesta["password"]== $_POST["passwordIngreso"]){
+				session_start();
+				$_SESSION["validar"]= true;
+
 				header("location:index.php?action=usuarios");
 			}else{
 				header("location:index.php?action=fallo");
