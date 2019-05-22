@@ -18,6 +18,24 @@ class MvcController{
 		$respuesta = Paginas::enlacesPaginasModel($enlaces);
 		include $respuesta;
 	}
+	#REGISTROS DE USUARIOS
+	#------------------------------------------------------
+	public function registroUsuarioController(){
+		if(isset($_POST["usuario"])){
+			$datosController= array("usuario"=>$_POST["usuario"], 
+														"password"=>$_POST["password"], 
+														"email" =>$_POST["email"]);
+			$respuesta =Datos :: registroUsuarioModel($datosController, "usuario");
+			if ($respuesta== "succes"){
+				header("location:index.php?action=ok");
+			}else{
+				header("location:index.php");
+			}
+			 
+		}
+		
+		
+	}
 }
 
 ?>
