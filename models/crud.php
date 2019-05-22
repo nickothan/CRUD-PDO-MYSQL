@@ -4,7 +4,6 @@ require_once "models/conexion.php";
         #Registro de usuarios
         #------------------------------------------
         public function registroUsuarioModel($datosModel, $tabla){
-        
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (usuario, password, email) 
                                                                               VALUES (:usuario,:password,:email)");
         $stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
@@ -12,10 +11,17 @@ require_once "models/conexion.php";
         $stmt -> bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
         if($stmt->execute()){
             return "succes";
-        }else{
+            }else{
             return "error";
         }
-        
+        }
+        #INGRESO USUARIO
+        #-------------------
+        public function ingresoUsuarioModel($datosModel, $tabla){
+            $stmt = Conexion::conectar()->prepare("SELECT  usuario, password FROM $tabla WHERE usuario = :usuario");
+            $stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch();
         }
     }
 ?>
