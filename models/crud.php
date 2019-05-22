@@ -23,5 +23,12 @@ require_once "models/conexion.php";
             $stmt->execute();
             return $stmt->fetch();
         }
+        #VISTA DE DATOS
+        #----------------------------------
+        public function vistaUsuariosModel($tabla){
+            $stmt = Conexion::conectar()->prepare("SELECT  id, usuario, password, email FROM $tabla");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
     }
 ?>

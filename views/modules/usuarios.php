@@ -10,12 +10,17 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>juan</td>
-				<td>1234</td>
-				<td>juan@hotmail.com</td>
-				<td><button>Editar</button></td>
-				<td><button>Borrar</button></td>
-			</tr>
+			<?php
+	 $ingreso = new MvcController();
+	 $ingreso-> vistaUsuariosController();
+
+	 if(isset($_GET["action"])){
+		 if($_GET["action"]=="fallo"){
+			 echo "fallo al ingresar";
+		 }
+	 }
+	?>
 		</tbody>
 	</table>
+
+	

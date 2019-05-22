@@ -47,6 +47,22 @@ class MvcController{
 			}
 		}
 	}
+	#VISTA DE USUARIOS
+	#------------------------------------------------------
+	public function vistaUsuariosController(){
+		$respuesta = Datos:: vistaUsuariosModel("usuario");
+		foreach($respuesta as $row => $item){
+			echo "<tr>
+						<td>".$item['usuario']."</td>
+						<td>".$item['password']."</td>
+						<td>".$item['email']."</td>
+						<td><button>Editar</button></td>
+						<td><button>Borrar</button></td>
+					</tr>";
+
+		}
+		
+	}
 }
 
 ?>
