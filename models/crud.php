@@ -57,11 +57,23 @@ require_once "models/conexion.php";
             $stmt -> bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
             $stmt->bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
             if($stmt->execute()){
+                    return "success";
+                }else{
+                    return "error";
+            }
+            $stmt ->close();
+        }
+        #BORRAR USUARIO
+        #---------------------------------
+        public function borrarUsuarioModel($datosModel, $tabla){
+            $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+		    $stmt->bindParam(":id", $datosModel, PDO::PARAM_INT);
+            if($stmt->execute()){
                 return "success";
             }else{
                 return "error";
-            }
-            $stmt ->close();
+        }
+        $stmt ->close();
         }
     }
 ?>

@@ -18,8 +18,9 @@ if(!$_SESSION["validar"]){
 		</thead>
 		<tbody>
 			<?php
-	 $ingreso = new MvcController();
-	 $ingreso-> vistaUsuariosController();
+	 $vistaUsuario = new MvcController();
+	 $vistaUsuario-> vistaUsuariosController();
+	 $vistaUsuario->borrarUsuarioController();
 
 	 if(isset($_GET["action"])){
 		 if($_GET["action"]=="fallo"){
