@@ -36,11 +36,32 @@ require_once "models/conexion.php";
         #EDITAR USUARIO
         #----------------------------------
         public function editarUsuariosModel($datosModel, $tabla){
-            $stmt = Conexion::conectar()->prepare("SELECT  id, usuario, password, email FROM $tabla WHERE id = :id");
+            $stmt = Conexion::conectar()->prepare("SELECT  id, usuario, password, email 
+                                                                                    FROM $tabla 
+                                                                                    WHERE id = :id");
             $stmt->bindParam(":id", $datosModel, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetch();
             $stmt->close();
+        }
+        #ACTUALIZAR USUARIO
+        #------------------------------------------------------------------------
+        public function actualizarUsuarioModel($datosModel, $tabla){
+            $stmt =Conexion::conectar()->prepare(" UPDATE $tabla 
+                                                                                    SET usuario=:usuario,
+                                                                                            password=:password,
+                                                                                            email=:email 
+                                                                                    WHERE id =:id");
+            $stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
+            $stmt -> bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
+            $stmt -> bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+            $stmt->bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
+            if($stmt->execute()){
+                return "success";
+            }else{
+                return "error";
+            }
+            $stmt ->close();
         }
     }
 ?>
