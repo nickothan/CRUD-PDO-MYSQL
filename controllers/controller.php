@@ -69,7 +69,7 @@ class MvcController{
 	public function editarUsuarioController(){
 		$datosController = $_GET["id"];
 		$respuesta = Datos:: editarUsuariosModel($datosController, "usuario");
-		echo '<input type="hidden" value="'.$respuesta["id"].' name="idEditar">
+		echo '<input type="hidden" value="'.$respuesta["id"].'" name="idEditar">
 				<input type="text" value="'.$respuesta["usuario"].'" name="usuarioEditar" required>
 				<input type="text" value="'.$respuesta["password"].'" name="passwordEditar" required>
 				<input type="email" value="'.$respuesta["email"].'"" name="emailEditar" required>
@@ -79,7 +79,8 @@ class MvcController{
 	#--------------------------------------------------------------	
 	public function actualizarUsuarioController(){
 		if(isset($_POST["usuarioEditar"])){
-			$datosController = array( 
+			var_dump($_POST["idEditar"]);
+			$datosController = array( "id"=> $_POST["idEditar"],
 							          "usuario"=>$_POST["usuarioEditar"],
 				                      "password"=>$_POST["passwordEditar"],
 				                      "email"=>$_POST["emailEditar"]);
